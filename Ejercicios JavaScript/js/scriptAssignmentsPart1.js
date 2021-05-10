@@ -1,4 +1,4 @@
-
+'use strict'; 
 //ASSIGNEMENTS JAVASCRIPT COURSE FROM ZERO TO EXPERT UDEMY 
 const numMaxLecturas = 50; 
 const lecturesStatements = new Array(numMaxLecturas); 
