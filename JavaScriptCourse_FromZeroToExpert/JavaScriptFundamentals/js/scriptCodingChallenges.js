@@ -1,11 +1,9 @@
-
 //CODING CHALLENGES JAVASCRIPT COURSE FROM ZERO TO EXPERT UDEMY (2021)
 /* console.log("====================JAVACRIPT FROM ZERO TO EXPERT: CODING CHALLENGES(CC) ===================="); */
 /* /*CODING CHALLENGE #1 */
-const numMaxOfChallenges = 60; 
+const numMaxOfChallenges = 60;
 const codingChallenges = new Array(numMaxOfChallenges);
-codingChallenges[0] = 
-`Mark and John are trying to compare their BMI (Body Mass Index), which is 
+codingChallenges[0] = `Mark and John are trying to compare their BMI (Body Mass Index), which is 
 calculated using the formula: BMI = mass / height ** 2 = mass / (height * height) (mass in and 
 height in meter). Your tasks: 
 
@@ -13,35 +11,36 @@ height in meter). Your tasks:
     2. Calculate both their BMIs using the formula (you can even implement both 
     versions) 
     3. Create a Boolean variable 'markHigherBMI' containing information about 
-    whether Mark has a higher BMI than John.`; 
+    whether Mark has a higher BMI than John.`;
 
-const markBMI = (78 / 1.79 ** 2); 
-const johnBMI = (100 / (1.90 * 1.90)); 
-let markHigherBMI = (markBMI > johnBMI); 
+const markBMI = 78 / 1.79 ** 2;
+const johnBMI = 100 / (1.9 * 1.9);
+let markHigherBMI = markBMI > johnBMI;
 textToPrint = `-CC#1Result-\nThe mark BMI is: ${markBMI.toFixed(2)}
 The John BMI is: ${johnBMI.toFixed(2)}
-is Mark BMI higher than John BMI?: ${markHigherBMI}`; 
-
+is Mark BMI higher than John BMI?: ${markHigherBMI}`;
 
 /* CODING CHAGENGE #2 */
-codingChallenges[1] =
-`Use the BMI example from Challenge #1, and the code you already wrote, and 
+codingChallenges[1] = `Use the BMI example from Challenge #1, and the code you already wrote, and 
 improve it. Your tasks: 
     1. Print a nice output to the console, saying who has the higher BMI. The message 
     is either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!" 
     2. Use a template literal to include the BMI values in the outputs. Example: "Mark's 
-    BMI (28.3) is higher than John's (23.9)!" `; 
+    BMI (28.3) is higher than John's (23.9)!" `;
 
-
-if(markHigherBMI){  //NOTE: Teacher says that is better put comparison with conditional's operators. 
-    textToPrint = `-CC#2Result-\nMark's BMI (${markBMI.toFixed(2)}) is higher that John's BMI (${johnBMI.toFixed(2)})`; 
-}else{
-    textToPrint = `-CC#2Result-\nJohn's BMI (${johnBMI.toFixed(2)}) is higher that Mark's BMI (${markBMI.toFixed(2)})`;  
+if (markHigherBMI) {
+  //NOTE: Teacher says that is better put comparison with conditional's operators.
+  textToPrint = `-CC#2Result-\nMark's BMI (${markBMI.toFixed(
+    2
+  )}) is higher that John's BMI (${johnBMI.toFixed(2)})`;
+} else {
+  textToPrint = `-CC#2Result-\nJohn's BMI (${johnBMI.toFixed(
+    2
+  )}) is higher that Mark's BMI (${markBMI.toFixed(2)})`;
 }
 
 /* CODING CHAGENGE #3 */
-codingChallenges[2] = 
-`There are two gymnastics teams, Dolphins and Koalas. They compete against each 
+codingChallenges[2] = `There are two gymnastics teams, Dolphins and Koalas. They compete against each 
 other 3 times. The winner with the highest average score wins a trophy! 
 Your tasks: 
     1. Calculate the average score for each team, using the test data below 
@@ -76,8 +75,7 @@ if((dolphinAverage > koalaAverage) && (dolphinAverage >= 100)){
 } */
 
 /* Coding Challenge #4  */
-codingChallenges[3] =
-`Steven wants to build a very simple tip calculator for whenever he goes eating in a 
+codingChallenges[3] = `Steven wants to build a very simple tip calculator for whenever he goes eating in a 
 restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and 
 300. If the value is different, the tip is 20%. Your tasks: 
     1. Calculate the tip, depending on the bill value. Create a variable called 'tip' for 
@@ -93,16 +91,17 @@ restaurant. In his country, it's usual to tip 15% if the bill value is between 5
         § To calculate 20% of a value, simply multiply it by 20/100 = 0.2 
         § Value X is between 50 and 300, if it's >= 50 && <= 300 😉 `;
 
-const bill = 275; 
-const tip = (bill >= 50 && bill <= 300) ? 0.15*bill : 0.20 * bill; 
-textToPrint = `The bill was ${bill}, the tip was ${tip}, and the total value is ${bill+tip}`; 
+const bill = 275;
+const tip = bill >= 50 && bill <= 300 ? 0.15 * bill : 0.2 * bill;
+textToPrint = `The bill was ${bill}, the tip was ${tip}, and the total value is ${
+  bill + tip
+}`;
 
 //***************************************************************************************************//
 //=================================PART 2 OF THE COURSE =============================================//
 //***************************************************************************************************//
 
-codingChallenges[4] =
-`Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new 
+codingChallenges[4] = `Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new 
 gymnastics discipline, which works differently. Each team competes 3 times, and
 then the average of the 3 scores is calculated (so one average score per team). 
 A team only wins if it has at least double the average score of the other team. 
@@ -123,7 +122,7 @@ Your tasks:
     Hints: 
     § To calculate average of 3 values, add them all together and divide by 3 
     § To check if number A is at least double number B, check for A >= 2 * B. 
-    Apply this to the team's average scores 😉`; 
+    Apply this to the team's average scores 😉`;
 
 /* const calcAverage = (score1, score2, score3) => (score1+score2+score3)/3; 
 const dolphinScore = calcAverage(85,54,41);
@@ -142,8 +141,7 @@ const checkWinner = function (avgDolphins, avgKoalas) {
 checkWinner(dolphinScore, koalasScore);  */
 
 /* Coding Challenge #2  */
-codingChallenges[5] =
-`Steven is still building his tip calculator, using the same rules as before: Tip 15% of 
+codingChallenges[5] = `Steven is still building his tip calculator, using the same rules as before: Tip 15% of 
 the bill if the bill value is between 50 and 300, and if the value is different, the tip is 
 20%. 
 Your tasks: 
@@ -160,21 +158,17 @@ Your tasks:
     Hint: Remember that an array needs a value in each position, and that value can 
     actually be the returned value of a function! So you can just call a function as array 
     values (so don't store the tip values in separate variables first, but right in the new 
-    array) 😉 `; 
+    array) 😉 `;
 
-/* const calcTip = bill => (bill>= 50 && bill <= 300) ? (0.15*bill) : 0.20*bill; 
+const calcTip = bill => (bill >= 50 && bill <= 300 ? 0.15 * bill : 0.2 * bill);
 
-
-
-const bills = [125,555,44];  
+/* const bills = [125,555,44];  
 const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
 const total = [tips[0]+bills[0], tips[1]+bills[1], tips[2]+bills[2]]; 
 console.log(tips,total);  */
 
-
 /* Coding Challenge #3  */
-codingChallenges[5] =
-`Let's go back to Mark and John comparing their BMIs! This time, let's use objects to 
+codingChallenges[6] = `Let's go back to Mark and John comparing their BMIs! This time, let's use objects to 
 implement the calculations! Remember: BMI = mass / height ** 2 = mass 
 / (height * height) (mass in kg and height in meter) 
 Your tasks: 
@@ -188,7 +182,7 @@ respective BMI. Example: "John's BMI (28.3) is higher than Mark's (23.9)!"
 Test data: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m 
 tall. 
 
-`; 
+`;
 /* const mark = {
     name: "Mark Miller",
     mass: 78,
@@ -214,3 +208,70 @@ if(john.calcBMI() > mark.calcBMI()){
 }else if(john.bmi < mark.bmi){
     console.log(`${mark.name}'s BMI (${mark.bmi}) is higher than ${john.name}'s BMI (${john.bmi})`); 
 } */
+
+/* Coding Challenge #4  */
+codingChallenges[7] = `Let's improve Steven's tip calculator even more, this time using loops! 
+Your tasks: 
+1. Create an array 'bills' containing all 10 test bill values 
+2. Create empty arrays for the tips and the totals ('tips' and 'totals') 
+3. Use the 'calcTip' function we wrote before (no need to repeat) to calculate 
+    tips and total values (bill + tip) for every bill value in the bills array. Use a for 
+    loop to perform the 10 calculations! 
+    Test data: 22, 295, 176, 440, 37, 105, 10, 1100, 86 and 52 
+    Hints: Call ‘calcTip ‘in the loop and use the push method to add values to the 
+    tips and totals arrays 😉 
+    Bonus: 
+4. Bonus: Write a function 'calcAverage' which takes an array called 'arr' as 
+    an argument. This function calculates the average of all numbers in the given 
+    array. This is a difficult challenge (we haven't done this before)! Here is how to 
+    solve it: 
+4.1. First, you will need to add up all values in the array. To do the addition, 
+    start by creating a variable 'sum' that starts at 0. Then loop over the 
+    array using a for loop. In each iteration, add the current value to the 
+    'sum' variable. This way, by the end of the loop, you have all values 
+    added together 
+4.2. To calculate the average, divide the sum you calculated before by the 
+    length of the array (because that's the number of elements) 
+4.3. Call the function with the 'totals' array `;
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(bills[i] + tips[i]);
+}
+/* console.log(bills, '\n',tips, '\n', totals);  */
+function calcAverage(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+/* console.log(calcAverage(totals));  */
+
+//===================================================================================================================
+
+/* Coding Challenge #8  */
+codingChallenges[8] = `Given an array of forecasted maximum temperatures, the thermometer displays a 
+string with the given temperatures. Example: [17, 21, 23] will print "... 17ºC in 1 
+days ... 21ºC in 2 days ... 23ºC in 3 days ..." 
+Your tasks: 
+1. Create a function 'printForecast' which takes in an array 'arr' and logs a 
+string like the above to the console. Try it with both test datasets. 
+2. Use the problem-solving framework: Understand the problem and break it up 
+into sub-problems! 
+Test data: 
+§ Data 1: [17, 21, 23] 
+§ Data 2: [12, 5, -5, 0, 4] `;
+
+const printForecast = arr => {
+  let result = '... ';
+  for (let i = 0; i < arr.length; i++) {
+    result += `${arr[i]}ºC in ${i + 1} days...`;
+  }
+  console.log(result);
+};
+
+printForecast([1, 2, 3, 4, 5, 6, 78, 9]);
