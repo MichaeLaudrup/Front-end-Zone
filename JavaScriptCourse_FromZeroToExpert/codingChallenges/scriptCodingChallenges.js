@@ -498,10 +498,275 @@ game, it will look like this:
 } //END OF SCOPE OF CHALLENGE NUMBER
 
 //CODING CHAGENGE 11
-codingChallenges[11] = `
+codingChallenges[11] = `Let's continue with our football betting app! This time, we have a map called 
+'gameEvents' (see below) with a log of the events that happened during the 
+game. The values are the events themselves, and the keys are the minutes in which 
+each event happened (a football game has 90 minutes plus some extra time). 
+Your tasks: 
+1. Create an array 'events' of the different game events that happened (no 
+duplicates) 
+2. After the game has finished, is was found that the yellow card from minute 64 
+was unfair. So remove this event from the game events log. 
+3. Compute and log the following string to the console: "An event happened, on 
+average, every 9 minutes" (keep in mind that a game has 90 minutes) 
+4. Loop over 'gameEvents' and log each element to the console, marking 
+whether it's in the first half or second half (after 45 min) of the game, like this: 
+[FIRST HALF] 17: ⚽ GOAL 
 `;
 {
+  const gameEvents = new Map([
+    [17, '⚽ GOAL'],
+    [36, '🔁 Substitution'],
+    [47, '⚽ GOAL'],
+    [61, '🔁 Substitution'],
+    [64, '🔶 Yellow card'],
+    [69, '🔴 Red card'],
+    [70, '🔁 Substitution'],
+    [72, '🔁 Substitution'],
+    [76, '⚽ GOAL'],
+    [80, '⚽ GOAL'],
+    [92, '🔶 Yellow card'],
+  ]);
+
+  const event = [...new Set(gameEvents.values())];
+  /* console.log(event); */
+
+  gameEvents.delete(64);
+  /*   console.log(gameEvents); */
+
+  let average = 0;
+  let previous = 0;
+  for (const key of gameEvents.keys()) {
+    average += key - previous;
+    previous = key;
+  }
+
+  /*   console.log(
+    `An event happened, on average, every ${average / gameEvents.size} minutes `
+  ); */
+
+  for (const [key, value] of gameEvents.entries()) {
+    const actualPart = key < 45 ? '[FIRST HALF]' : '[SECOND HALF]';
+    /*     console.log(`${actualPart} ${key}:  ${value}`); */
+  }
 } //END OF CODING CHALLENGE NUMBER 13
 
+//CODING CHAGENGE 12
+codingChallenges[12] = `Write a program that receives a list of variable names written in underscore_case 
+and convert them to camelCase. 
+The input will come from a textarea inserted into the DOM (see code below to 
+insert the elements), and conversion will happen when the button is pressed. `;
+{
+  /* const fromUnderScoreToCamel = function (text) {
+    rowsArray = text.split('\n');
+    result = '';
+    for (let [index, row] of rowsArray.entries()) {
+      console.log();
+      row = row.trim();
+      row = row.split('_');
+      row = row[0] + row[1][0].toUpperCase() + row[1].slice(1);
+      row = row.padEnd(20);
+      row = ` ${row} ${'✔'.repeat(index + 1)}`;
+
+      console.log(row);
+    }
+  };
+  document.body.append(document.createElement('textarea'));
+  document.body.append(document.createElement('button'));
+  const textArea = document.querySelector('textarea');
+  const buttom = document.querySelector('button');
+  buttom.style = 'width:50px; height:50px';
+  buttom.innerHTML = 'OK';
+  textArea.innerHTML = `underscore_case 
+  first_name 
+ Some_Variable  
+   calculate_AGE 
+ delayed_departure `;
+  buttom.onclick = function () {
+    const text = textArea.value;
+    fromUnderScoreToCamel(text);
+  }; */
+} //END OF CODING CHALLENGE NUMBER 12
+
 //CODING CHAGENGE 13
-codingChallenges[11] = {}; //END OF CODING CHALLENGE NUMBER 13
+codingChallenges[13] = `Let's build a simple poll app! 
+A poll has a question, an array of options from which people can choose, and an 
+array with the number of replies for each option. This data is stored in the starter 
+'poll' object below. 
+Your tasks: 
+1. Create a method called 'registerNewAnswer' on the 'poll' object. The 
+method does 2 things: 
+1.1. Display a prompt window for the user to input the number of the 
+selected option. The prompt should look like this: 
+What is your favourite programming language? 
+0: JavaScript 
+1: Python 
+2: Rust 
+3: C++ 
+(Write option number) 
+1.2. Based on the input number, update the 'answers' array property. For 
+example, if the option is 3, increase the value at position 3 of the array by 
+1. Make sure to check if the input is a number and if the number makes 
+sense (e.g. answer 52 wouldn't make sense, right?) 
+2. Call this method whenever the user clicks the "Answer poll" button. 
+3. Create a method 'displayResults' which displays the poll results. The 
+method takes a string as an input (called 'type'), which can be either 'string' 
+or 'array'. If type is 'array', simply display the results array as it is, using 
+console.log(). This should be the default option. If type is 'string', display a 
+string like "Poll results are 13, 2, 4, 1".  
+4. Run the 'displayResults' method at the end of each 
+'registerNewAnswer' method call. 
+5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test 
+data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll 
+object! So what should the this keyword look like in this situation? `;
+{
+  const poll = {
+    question: 'What is your favourite programming language?',
+    options: ['0: JavaScript', '1: Python', '2: Rust', '3:C++'],
+    // This generates [0, 0, 0, 0]. More in the next section!
+    answers: new Array(4).fill(0),
+    registerNewAnswer() {
+      let presentation = `${this.question}\n${this.options.join(
+        '\n'
+      )} \nWrite option number`;
+      const number = Number(prompt(presentation));
+      if (number >= 0 && number <= 3 && typeof number === 'number') {
+        this.answers[number]++;
+      } else {
+        console.log(`answer ${number} wouldn't make sense, right? `);
+      }
+      this.displayResults();
+      this.displayResults('string');
+    },
+    displayResults(type = 'array') {
+      if (type === 'array') {
+        console.log(this.answers);
+      } else {
+        console.log('Poll results are ' + this.answers.toString());
+      }
+    },
+  };
+
+  const nw = poll.registerNewAnswer.bind(poll);
+  document.querySelector('.poll').addEventListener('click', nw);
+
+  //BONUS
+  const data1 = [5, 2, 3];
+  const data2 = [1, 5, 3, 9, 6, 1];
+} //END OF CODING CHALLENGE NUMBER 13
+
+//CODING CHAGENGE 14
+codingChallenges[14] = `This is more of a thinking challenge than a coding challenge 🤓 
+Your tasks: 
+1. Take the IIFE below and at the end of the function, attach an event listener that 
+changes the color of the selected h1 element ('header') to blue, each time 
+the body element is clicked. Do not select the h1 element again! 
+2. And now explain to yourself (or someone around you) why this worked! Take all 
+the time you need. Think about when exactly the callback function is executed, 
+and what that means for the variables involved in this example.  `;
+{
+  (function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+
+    document.querySelector('body').addEventListener('click', function () {
+      header.style.color = 'blue';
+    });
+  })();
+} //END OF CODING CHALLENGE NUMBER 14
+
+//CODING CHAGENGE 15
+codingChallenges[15] = `Coding Challenge #1 
+Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners 
+about their dog's age, and stored the data into an array (one array for each). For 
+now, they are just interested in knowing whether a dog is an adult or a puppy. 
+A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years 
+old. 
+Your tasks: 
+Create a function 'checkDogs', which accepts 2 arrays of dog's ages 
+('dogsJulia' and 'dogsKate'), and does the following things: 
+1. Julia found out that the owners of the first and the last two dogs actually have 
+cats, not dogs! So create a shallow copy of Julia's array, and remove the cat 
+ages from that copied array (because it's a bad practice to mutate function 
+parameters) 
+2. Create an array with both Julia's (corrected) and Kate's data 
+3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 
+is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy 
+🐶") 
+4. Run the function for both test datasets 
+Test data: 
+§ Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3] 
+§ Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]`;
+{
+  function checkDogs(dogsJulia, dogsKate) {
+    const shallowCopy = dogsJulia.slice(1, 3);
+    const allDogs = shallowCopy.concat(dogsKate);
+    allDogs.forEach(function (dog, i) {
+      console.log(
+        `Dog number ${i + 1} is ${
+          dog >= 3 ? `an adult, and is ${dog} years old` : 'still a puppy 🐶'
+        } `
+      );
+    });
+  }
+
+  /*  checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+  console.log('================================');
+  checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]); */
+} //END OF CODING CHALLENGE NUMBER 15
+
+//CODING CHAGENGE 16
+codingChallenges[16] = `Let's go back to Julia and Kate's study about dogs. This time, they want to convert 
+dog ages to human ages and calculate the average age of the dogs in their study. 
+Your tasks: 
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's 
+ages ('ages'), and does the following things in order: 
+1. Calculate the dog age in human years using the following formula: if the dog is 
+<= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, 
+humanAge = 16 + dogAge * 4 
+2. Exclude all dogs that are less than 18 human years old (which is the same as 
+keeping dogs that are at least 18 years old) 
+3. Calculate the average human age of all adult dogs (you should already know 
+from other challenges how we calculate averages 😉) 
+4. Run the function for both test datasets 
+Test data: 
+§ Data 1: [5, 2, 4, 1, 15, 8, 3] 
+§ Data 2: [16, 6, 10, 5, 6, 1, 4] `;
+{
+  const calcAverageHumanAge = function (ages) {
+    console.log(ages);
+    const agesOfDogsInHumanYears = ages.map(item =>
+      item <= 2 ? 2 * item : 16 + item * 4
+    );
+    console.log(agesOfDogsInHumanYears);
+    const adultDogs = agesOfDogsInHumanYears.filter(item => item >= 18);
+    console.log(adultDogs);
+
+    const averageYears =
+      adultDogs.reduce((acc, item) => (acc += item), 0) / adultDogs.length;
+    console.log(averageYears);
+  };
+
+  calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+} //END OF CODING CHALLENGE NUMBER 16
+
+//CODING CHAGENGE 17
+codingChallenges[17] = `
+
+
+
+`;
+{
+} //END OF CODING CHALLENGE NUMBER 17
+//CODING CHAGENGE 17
+codingChallenges[17] = `Rewrite the 'calcAverageHumanAge' function from Challenge #16, but this time 
+as an arrow function, and using chaining! 
+Test data: 
+§ Data 1: [5, 2, 4, 1, 15, 8, 3] 
+§ Data 2: [16, 6, 10, 5, 6, 1, 4] `;
+{
+} //END OF CODING CHALLENGE NUMBER 17
+//CODING CHAGENGE 17
+codingChallenges[17] = ``;
+{
+} //END OF CODING CHALLENGE NUMBER 17
